@@ -1,0 +1,56 @@
+# Unsupervised Domain Adaptive Re-Identification
+
+Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: Theory and Practice]().
+
+## Setup
+
+1. Datasets (source dataset and target dataset).
+2. Pre-trained (on source dataset) model.
+
+## Requirements
+
+- PyTorch
+
+## Running the experiments
+
+To replicate the results in the paper, you can download pre-trained models on Market1501 from [GoogleDrive]() and on DukeMTMC from [GoogleDrive](). Our models are trained with __PyTorch 0.3__.
+
+```
+python selftraining --src_dataset <name_of_source_dataset>\
+                    --tgt_dataset <name_of_target_dataset>\
+                    --resume <dir_of_source_trained_model>\
+                    --data_dir <dir_of_source_target_data>\
+                    --logs_dir <dir_to_save_model_after_adaptation>
+```
+
+`dw_example.ipynb` is the code for replicating Figure 6 in the paper.
+
+### Results
+
+#### DukeMTMC ---> Market1501
+
+| | Rank-1 | Rank-5 | Rank-10| mAP|
+| --- | :---: | :---: | :---: | :---: |
+|On source (DukeMTMC)| 80.8 | 91.2 | 94.2 | 65.4|
+|On target (Market1501)| 46.8|64.6|71.5|19.1|
+|After adaptation| 75.8|89.5|93.2|53.7|
+
+#### Market1501 ---> DukeMTMC
+
+| | Rank-1 | Rank-5 | Rank-10| mAP|
+| --- | :---: | :---: | :---: | :---: |
+|On source (Market1501)| 91.6 | 97.1 | 98.5 | 78.2|
+|On target (DukeMTMC)| 27.3|41.2|47.1|11.9|
+|After adaptation| 68.4|80.1|83.5|49.0|
+
+#### Market1501 ---> CUHK03
+
+| | Rank-1 | Rank-5 | Rank-10| mAP|
+| --- | :---: | :---: | :---: | :---: |
+|On source (Market1501)| 91.6 | 97.1 | 98.5 | 78.2|
+|On target (CUHK03)| 11.5|23.5|34.5|9.0|
+|After adaptation| 38.0|59.5|69.0|28.9|
+
+## Acknowledgement
+
+Our codes are based on [open-reid](https://github.com/Cysu/open-reid).
