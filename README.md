@@ -3,6 +3,7 @@
 Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: Theory and Practice](). 
 
 The selftraining scheme proposed in the paper is simple yet effective.
+
 ![Illustration of the selftraining scheme.](./data/algorithm_illustration.png)
 
 ## Setup
@@ -47,13 +48,13 @@ python selftraining.py \
 |On target (DukeMTMC)| 27.3|41.2|47.1|11.9|
 |After adaptation| 68.4|80.1|83.5|49.0|
 
-#### Market1501 ---> CUHK03
+<!-- #### Market1501 --- > CUHK03 -->
 
-| | Rank-1 | Rank-5 | Rank-10| mAP|
-| --- | :---: | :---: | :---: | :---: |
-|On source (Market1501)| 91.6 | 97.1 | 98.5 | 78.2|
-|On target (CUHK03)| 11.5|23.5|34.5|9.0|
-|After adaptation| 38.0|59.5|69.0|28.9|
+<!-- | | Rank-1 | Rank-5 | Rank-10| mAP| -->
+<!-- | --- | :---: | :---: | :---: | :---: | -->
+<!-- |On source (Market1501)| 91.6 | 97.1 | 98.5 | 78.2| -->
+<!-- |On target (CUHK03)| 11.5|23.5|34.5|9.0| -->
+<!-- |After adaptation| 38.0|59.5|69.0|28.9| -->
 
 ## Acknowledgement
 
