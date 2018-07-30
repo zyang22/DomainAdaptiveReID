@@ -3,7 +3,7 @@
 Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: Theory and Practice](). 
 
 The selftraining scheme proposed in the paper is simple yet effective.
-![Illustration of the selftraining scheme.](./selftraining_scheme.svg)
+![Illustration of the selftraining scheme.](https://cdn.rawgit.com/LcDog/DomainAdaptiveReID/master/selftraining_scheme.svg)
 
 ## Setup
 
