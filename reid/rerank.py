@@ -20,21 +20,22 @@ from scipy.spatial.distance import cdist
 
 def re_ranking(input_feature_source,input_feature,k1=20,k2=6,lambda_value=0.2):
 
-    all_num_source  = input_feature_source.shape[0]
     all_num = input_feature.shape[0]    
     feat = input_feature.astype(np.float16)
 
-    print('Computing source distance...')
-    sour_tar_dist = np.power(
-        cdist(input_feature, input_feature_source), 2).astype(np.float16)
-    sour_tar_dist = 1-np.exp(-sour_tar_dist)
-    source_dist_vec = np.min(sour_tar_dist, axis = 1)
-    source_dist_vec = source_dist_vec / np.max(source_dist_vec)
-    source_dist = np.zeros([all_num, all_num])
-    for i in range(all_num):
-        source_dist[i, :] = source_dist_vec + source_dist_vec[i]
-    del sour_tar_dist
-    del source_dist_vec
+    if lambda_value != 0:
+        print('Computing source distance...')
+        all_num_source  = input_feature_source.shape[0]
+        sour_tar_dist = np.power(
+            cdist(input_feature, input_feature_source), 2).astype(np.float16)
+        sour_tar_dist = 1-np.exp(-sour_tar_dist)
+        source_dist_vec = np.min(sour_tar_dist, axis = 1)
+        source_dist_vec = source_dist_vec / np.max(source_dist_vec)
+        source_dist = np.zeros([all_num, all_num])
+        for i in range(all_num):
+            source_dist[i, :] = source_dist_vec + source_dist_vec[i]
+        del sour_tar_dist
+        del source_dist_vec
 
     print('Computing original distance...')
     original_dist = cdist(feat,feat).astype(np.float16)  
@@ -93,5 +94,8 @@ def re_ranking(input_feature_source,input_feature,k1=20,k2=6,lambda_value=0.2):
     pos_bool = (jaccard_dist < 0)
     jaccard_dist[pos_bool] = 0.0
 
-    final_dist = jaccard_dist*(1-lambda_value) + source_dist*lambda_value
-    return final_dist
+    if lambda_value == 0:
+        return jaccard_dist
+    else:
+        final_dist = jaccard_dist*(1-lambda_value) + source_dist*lambda_value
+        return final_dist

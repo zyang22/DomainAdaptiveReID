@@ -1,6 +1,9 @@
 # Unsupervised Domain Adaptive Re-Identification
 
-Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: Theory and Practice]().
+Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: Theory and Practice](). 
+
+The selftraining scheme proposed in the paper is simple yet effective.
+![Illustration of the selftraining scheme.](./selftraining_scheme.svg)
 
 ## Setup
 
@@ -13,17 +16,18 @@ Implementation of the paper [Unsupervised Domain Adaptive Re-Identification: The
 
 ## Running the experiments
 
-To replicate the results in the paper, you can download pre-trained models on Market1501 from [GoogleDrive]() and on DukeMTMC from [GoogleDrive](). Our models are trained with __PyTorch 0.3__.
+To replicate the results in the paper, you can download pre-trained models on Market1501 from [GoogleDrive](https://drive.google.com/open?id=1xNqduSroUMDbM_E5VeeR1WuykMh8Oxlb) and on DukeMTMC from [GoogleDrive](https://drive.google.com/file/d/1CFuf_vF9OphbuCyMefa3W8GA8tgcvSkI/view?usp=sharing). Our models are trained with __PyTorch 0.3__.
 
 ```
-python selftraining --src_dataset <name_of_source_dataset>\
-                    --tgt_dataset <name_of_target_dataset>\
-                    --resume <dir_of_source_trained_model>\
-                    --data_dir <dir_of_source_target_data>\
-                    --logs_dir <dir_to_save_model_after_adaptation>
+python selftraining.py \
+    --src_dataset <name_of_source_dataset>\
+    --tgt_dataset <name_of_target_dataset>\
+    --resume <dir_of_source_trained_model>\
+    --data_dir <dir_of_source_target_data>\
+    --logs_dir <dir_to_save_model_after_adaptation>
 ```
 
-`dw_example.ipynb` is the code for replicating Figure 6 in the paper.
+`dw_example.ipynb` is the file for replicating Figure 6 in the paper.
 
 ### Results
 
@@ -53,4 +57,4 @@ python selftraining --src_dataset <name_of_source_dataset>\
 
 ## Acknowledgement
 
-Our codes are based on [open-reid](https://github.com/Cysu/open-reid).
+Our code is based on [open-reid](https://github.com/Cysu/open-reid).

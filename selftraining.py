@@ -158,10 +158,14 @@ def main(args):
 
     # Start training
     for iter_n in range(args.iteration):
-        # get source datas' feature
-        source_features, _ = extract_features(model, src_extfeat_loader, print_freq=args.print_freq)
-        # synchronization feature order with src_dataset.train
-        source_features = torch.cat([source_features[f].unsqueeze(0) for f, _, _ in src_dataset.train], 0) 
+        if args.lambda_value == 0:
+            source_features = 0
+        else:
+            # get source datas' feature
+            source_features, _ = extract_features(model, src_extfeat_loader, print_freq=args.print_freq)
+            # synchronization feature order with src_dataset.train
+            source_features = torch.cat([source_features[f].unsqueeze(0) for f, _, _ in src_dataset.train], 0) 
+
         # extract training images' features
         print('Iteration {}: Extracting Target Dataset Features...'.format(iter_n+1))
         target_features, _ = extract_features(model, tgt_extfeat_loader, print_freq=args.print_freq)
