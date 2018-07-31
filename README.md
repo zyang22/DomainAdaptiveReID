@@ -19,6 +19,8 @@ The selftraining scheme proposed in the paper is simple yet effective.
 
 To replicate the results in the paper, you can download pre-trained models on Market1501 from [GoogleDrive](https://drive.google.com/open?id=1xNqduSroUMDbM_E5VeeR1WuykMh8Oxlb) and on DukeMTMC from [GoogleDrive](https://drive.google.com/file/d/1CFuf_vF9OphbuCyMefa3W8GA8tgcvSkI/view?usp=sharing). Our models are trained with __PyTorch 0.3__.
 
+> Code is temporarily removed in the latest commit due to a bug of memory leak. Please check the commit history. If you have any questions, please contact liangchen.song AT horizon.ai.
+
 ```
 python selftraining.py \
     --src_dataset <name_of_source_dataset>\
